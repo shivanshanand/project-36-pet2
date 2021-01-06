@@ -11,7 +11,7 @@
     //load images here
     dogImg=loadImage("dogImg.png");
     dogImg2=loadImage("dogImg1.png");
-    milkimg=loadImage("Milk(1).png");
+   
   }
 
   function setup() {
@@ -48,7 +48,7 @@
     noStroke();
     fill("white")
     textSize("90")
-    text("Note:Press UP_ARROW key to feed Drago Milk",170,30);
+    text("Note:Press UP_ARROW key to feed Drago Milk",80,30);
 
     fill("blue")
     textSize("60")
@@ -56,7 +56,7 @@
 
     food1.display();
 
-    fedTime=databse.ref('Feed Time');
+    fedTime=database.ref('Feed Time');
     fedTime.on("value",function(data){
       lastFed=data.val();
     })
@@ -66,14 +66,11 @@
     }
     else
     if(lastFed=0){
-      text("Last Feed : 12 AM",350,30);
+      text("Last Feed : 12 AM",270,60);
     }
     else{
     text("Last Feed :" + lastFed + "AM",350,30);
     }
-
-    FeedDog();
-    addFoods();
 
     drawSprites();
   }
@@ -81,6 +78,7 @@
   function readStock( data ){
 
     foodS=data.val();
+    food1.updateFoodStock(foodS);
 
   }
 
@@ -102,16 +100,16 @@
   function feedDog(){
     dog.addImage(dogImg2);
 
-    foodObj.updateFoodStock(foodObj.getFoodStock()-1);
+    food1.updateFoodStock(food1.getFoodStock()-1);
     database.ref('/').update({
-      Food: foodObj.getFoodStock(),
+      Food: food1.getFoodStock(),
       FeedTime:hour()
     })
   }
 
   function addFoods(){
     foodS++;
-    databse.ref('/').update({
+    database.ref('/').update({
       Food:foodS
     })
   }
