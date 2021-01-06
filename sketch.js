@@ -56,7 +56,7 @@
 
     food1.display();
 
-    fedTime=database.ref('Feed Time');
+    fedTime=database.ref('FeedTime');
     fedTime.on("value",function(data){
       lastFed=data.val();
     })
@@ -82,20 +82,7 @@
 
   }
 
-  function writeStock( x ){
-
-    if(x<=0){
-      x=0;
-    }
-    else{
-      x=x-1;
-    }
-
-    database.ref('/').update({
-      Food:x
-    })
-
-  }
+  
 
   function feedDog(){
     dog.addImage(dogImg2);
