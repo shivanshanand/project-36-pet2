@@ -11,7 +11,7 @@
             var x=80,y=100;
 
             imageMode(CENTER);
-            image(this.milkimg,720,220,70,70);
+            image(this.milkimg,500,220,70,70);
 
             if(this.foodStock!=0){
                 for(var i=0;i<this.foodStock;i=+1){
